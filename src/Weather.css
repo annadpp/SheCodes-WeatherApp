@@ -30,11 +30,6 @@
   margin-bottom: 20px;
 }
 
-.Weather canvas {
-  height: 64px;
-  margin-right: 15px;
-}
-
 .WeatherTemperature .temperature {
   font-weight: bold;
   color: rgb(33, 33, 33);

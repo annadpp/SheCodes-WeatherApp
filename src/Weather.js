@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 import axios from "axios";
 import "./Weather.css";
 
@@ -19,6 +20,7 @@ export default function Weather(props) {
       /*iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,*/
       icon: response.data.weather[0].icon,
       ready: true, //allows information rendering once API call is made
+      coordinates: response.data.coord,
     });
   }
 
@@ -28,7 +30,6 @@ export default function Weather(props) {
     let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
-  console.log(weatherData);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -65,6 +66,7 @@ export default function Weather(props) {
         </form>
         <WeatherInfo data={weatherData} />
         {/*sends weatherData data to new component*/}
+        <WeatherForecast size={52} coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
@@ -72,3 +74,7 @@ export default function Weather(props) {
     return "Loading...";
   }
 }
+
+//add degrees conversion onclick for 5-days forecast
+//update design
+//add info from API
